@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Materialize Calculator</title>
+  <!-- Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Materialize Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Materialize JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <style>
+    .container {
+      margin-top: 20px;
+    }
+    .calculator {
+      background-color: #f0f0f0;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+    .btn {
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m6 offset-m3">
+        <div class="card calculator">
+          <div class="card-content">
+            <span class="card-title center-align">Calculator</span>
+            <div class="input-field">
+              <input type="text" id="display" disabled>
+              <label for="display">Result</label>
+            </div>
+            <div class="row">
+              <a class="btn col s3" onclick="appendToDisplay('7')">7</a>
+              <a class="btn col s3" onclick="appendToDisplay('8')">8</a>
+              <a class="btn col s3" onclick="appendToDisplay('9')">9</a>
+              <a class="btn col s3 orange lighten-1" onclick="appendToDisplay('/')">/</a>
+            </div>
+            <div class="row">
+              <a class="btn col s3" onclick="appendToDisplay('4')">4</a>
+              <a class="btn col s3" onclick="appendToDisplay('5')">5</a>
+              <a class="btn col s3" onclick="appendToDisplay('6')">6</a>
+              <a class="btn col s3 orange lighten-1" onclick="appendToDisplay('*')">*</a>
+            </div>
+            <div class="row">
+              <a class="btn col s3" onclick="appendToDisplay('1')">1</a>
+              <a class="btn col s3" onclick="appendToDisplay('2')">2</a>
+              <a class="btn col s3" onclick="appendToDisplay('3')">3</a>
+              <a class="btn col s3 orange lighten-1" onclick="appendToDisplay('-')">-</a>
+            </div>
+            <div class="row">
+              <a class="btn col s3" onclick="appendToDisplay('0')">0</a>
+              <a class="btn col s3" onclick="appendToDisplay('.')">.</a>
+              <a class="btn col s3 orange lighten-1" onclick="calculate()">=</a>
+              <a class="btn col s3 orange lighten-1" onclick="appendToDisplay('+')">+</a>
+            </div>
+            <div class="row">
+              <a class="btn col s6" onclick="clearDisplay()">Clear</a>
+              <a class="btn col s6 orange lighten-1" onclick="backspace()">←</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function appendToDisplay(value) {
+      document.getElementById('display').value += value;
+    }
+
+    function calculate() {
+      let displayValue = document.getElementById('display').value;
+      let result = eval(displayValue); // Using eval for simplicity, not recommended for production due to security risks
+      document.getElementById('display').value = result;
+    }
+
+    function clearDisplay() {
+      document.getElementById('display').value = '';
+    }
+
+    function backspace() {
+      let displayValue = document.getElementById('display').value;
+      document.getElementById('display').value = displayValue.slice(0, -1);
+    }
+  </script>
+</body>
+</html>
